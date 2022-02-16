@@ -45,6 +45,7 @@ bool Lua::isCompatible(const std::string &script, Lua *l, std::string *error) {
     std::string err;
 
     if (!(script.size() >= lua.size() &&
+		/* 判断脚本的的后缀名是否为.lua */
         script.compare(script.size() - lua.size(), lua.size(), lua) == 0)) {
         error->assign("Expecting a Lua script: " + script);
         return false;
