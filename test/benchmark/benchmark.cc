@@ -24,7 +24,8 @@
 
 using modsecurity::Transaction;
 
-char request_uri[] = "/test.pl?param1=test&para2=test2";
+// char request_uri[] = "/test.pl?param1=test&para2=test2";
+char request_uri[] = "/test.pl?param1=test&para2=<scritp>alert()</script>";
 
 unsigned char response_body[] = "" \
     "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n\r" \
