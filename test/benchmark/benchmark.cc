@@ -49,7 +49,6 @@ int main(int argc, char *argv[]) {
 
     unsigned long long NUM_REQUESTS(1000000);
 
-    /** 123 456 **/
     if (argc > 1) {
         if (0 == strcmp(argv[1], "-h") ||
             0 == strcmp(argv[1], "-?") ||
