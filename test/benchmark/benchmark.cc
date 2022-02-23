@@ -43,7 +43,6 @@ char ip[] = "200.249.12.31";
 
 char rules_file[] = "../basic_rules.conf";
 
-/** 测试 **/
 const char* const help_message = "Usage: benchmark [num_iterations|-h|-?|--help]";
 
 int main(int argc, char *argv[]) {
