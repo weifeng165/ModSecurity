@@ -41,8 +41,9 @@ unsigned char response_body[] = "" \
 
 char ip[] = "200.249.12.31";
 
-char rules_file[] = "basic_rules.conf";
+char rules_file[] = "../basic_rules.conf";
 
+/** 测试 **/
 const char* const help_message = "Usage: benchmark [num_iterations|-h|-?|--help]";
 
 int main(int argc, char *argv[]) {
@@ -79,6 +80,7 @@ int main(int argc, char *argv[]) {
     modsec->setConnectorInformation("ModSecurity-benchmark v0.0.1-alpha" \
             " (ModSecurity benchmark utility)");
 
+	std::cout << "modsecurity初始化成功，开始加载规则集" << std::endl;
     rules = new modsecurity::RulesSet();
     if (rules->loadFromUri(rules_file) < 0) {
         std::cout << "Problems loading the rules..." << std::endl;
@@ -86,6 +88,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
+	std::cout << "规则集加载完毕" << std::endl;
     for (unsigned long long i = 0; i < NUM_REQUESTS; i++) {
         //std::cout << "Proceeding with request " << i << std::endl;
 
@@ -96,12 +99,14 @@ int main(int argc, char *argv[]) {
             std::cout << "There is an intervention" << std::endl;
             goto next_request;
         }
+		std::cout << "处理url" << std::endl;
         modsecTransaction->processURI(request_uri, "GET", "1.1");
         if (modsecTransaction->intervention(&it)) {
             std::cout << "There is an intervention" << std::endl;
             goto next_request;
         }
 
+		std::cout << "url处理完毕" << std::endl;
         modsecTransaction->addRequestHeader("Host",
             "net.tutsplus.com");
         modsecTransaction->addRequestHeader("User-Agent",
